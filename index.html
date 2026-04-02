@@ -782,7 +782,6 @@ ul { list-style: none; }
     <div class="nav-links" id="navLinks">
       <a href="#how">How It Works</a>
       <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="#hero" class="btn btn-primary nav-cta">Get Early Access</a>
     </div>
@@ -1049,21 +1048,8 @@ ul { list-style: none; }
   </div>
 </section>
 
-<!-- ============ PRICING ============ -->
-<section class="pricing" id="pricing">
-  <div class="container text-center">
-    <p class="section-label fade-up">Pricing</p>
-    <h2 class="section-title fade-up">Start free. Upgrade when you're ready.</h2>
-    <p class="section-subtitle fade-up">Currently in free beta — all features unlocked. Lock in early-adopter pricing before launch.</p>
-    <div class="pricing-toggle fade-up">
-      <span class="active" id="monthlyLabel">Monthly</span>
-      <button class="toggle-switch" id="pricingToggle" onclick="togglePricing()" aria-label="Toggle yearly pricing"></button>
-      <span id="yearlyLabel">Yearly</span>
-      <span class="save-badge">Save 25%</span>
-    </div>
-  </div>
-  <div class="container">
-    <div class="pricing-grid">
+<!-- ============ PRICING (hidden until pricing model decided) ============ -->
+<!--
       <div class="price-card fade-up">
         <div class="price-name">Free</div>
         <div class="price-desc">For getting started</div>
@@ -1106,9 +1092,7 @@ ul { list-style: none; }
         </ul>
         <a href="#" class="btn btn-outline">Contact Sales</a>
       </div>
-    </div>
-  </div>
-</section>
+-->
 
 <!-- ============ FAQ ============ -->
 <section class="faq" id="faq">
@@ -1182,7 +1166,7 @@ ul { list-style: none; }
   <div class="container fade-up">
     <h2>Ready to ditch the double-entry?</h2>
     <p>Join thousands of professionals who've already made the switch. Free during beta — no credit card required.</p>
-    <a href="#pricing" class="btn btn-primary">Get Early Access →</a>
+    <a href="#hero" class="btn btn-primary">Get Early Access →</a>
   </div>
 </section>
 
@@ -1204,7 +1188,7 @@ ul { list-style: none; }
       <div class="footer-col">
         <h4>Product</h4>
         <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="#faq">FAQ</a>
         <a href="#">Changelog</a>
       </div>
@@ -1271,19 +1255,6 @@ navLinks.querySelectorAll('a').forEach(a => {
 function scrollReviews(dir) {
   const track = document.getElementById('reviewsTrack');
   track.scrollBy({ left: dir * 380, behavior: 'smooth' });
-}
-
-// Pricing toggle
-let yearly = false;
-function togglePricing() {
-  yearly = !yearly;
-  document.getElementById('pricingToggle').classList.toggle('on', yearly);
-  document.getElementById('monthlyLabel').classList.toggle('active', !yearly);
-  document.getElementById('yearlyLabel').classList.toggle('active', yearly);
-  document.getElementById('proPriceVal').textContent = yearly ? '81' : '9';
-  document.getElementById('proPeriod').textContent = yearly ? 'per year' : 'per month';
-  document.getElementById('teamPriceVal').textContent = yearly ? '261' : '29';
-  document.getElementById('teamPeriod').textContent = yearly ? 'per year' : 'per month';
 }
 
 // FAQ accordion
