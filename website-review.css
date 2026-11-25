@@ -1,0 +1,45 @@
+:root { --ord-blue: #3569d4; --ord-ink: #17233b; }
+:focus-visible { outline: 3px solid #154baf; outline-offset: 4px; }
+.hero-blue :focus-visible { outline-color: white; }
+main[id], main section[id] { scroll-margin-top: 80px; }
+.hero-blue .hero-capture-card img { height: auto; }
+.hero-blue .hero-capture-label { font-weight: 640; }
+@media (min-width: 981px) {
+  .hero-blue h1 { font-size: clamp(45px, 4.25vw, 62px); line-height: 1.035; }
+}
+footer.footer { background: #f4f6fa; }
+.footer .reviewed-footer { display: grid; grid-template-columns: 1.2fr 1fr 1.15fr; align-items: start; gap: 24px; color: #43516a; }
+.reviewed-footer .brand { color: var(--ord-ink); }
+.footer-group { display: grid; justify-items: start; align-content: start; }
+.footer-group strong { color: var(--ord-ink); font-size: 1rem; margin-bottom: 5px; }
+.footer-group a { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 3px; }
+.social-link svg { width: 20px; height: 20px; flex: none; }
+.footer-bottom { grid-column: 1 / -1; border-top: 1px solid #d8e0ed; padding-top: 20px; }
+@media (max-width: 980px) {
+  .hero-blue .hero-grid { gap: 34px; }
+  .hero-blue .hero-capture-grid { max-width: 620px; }
+}
+@media (max-width: 760px) {
+  .nav .nav-links { visibility: hidden; padding: 16px 24px; gap: 3px; }
+  .nav .nav-links.open { visibility: visible; }
+  .nav .nav-links a { display: flex; align-items: center; min-height: 44px; }
+  .hero-blue.hero-blue { padding: 28px 0 55px; }
+  .hero-blue .hero-grid { gap: 26px; }
+  .hero-blue .eyebrow { margin-bottom: 13px; }
+  .hero-blue h1 { margin-bottom: 13px; font-size: clamp(30px, 7.7vw, 52px); line-height: 1.03; }
+  .hero-blue .hero-copy { margin-bottom: 14px; font-size: clamp(15px, 3.1vw, 19px); line-height: 1.42; }
+  .hero-blue .hero-capture-card img { aspect-ratio: 1 / 1.12; border-radius: 14px; }
+  .hero-blue .hero-capture-card:nth-child(2) { transform: translateY(12px); }
+  .hero-blue .hero-capture-card .capture-icon { width: 35px; height: 35px; bottom: -17px; }
+  .hero-blue .hero-capture-card svg { width: 19px; height: 19px; }
+  .hero-blue .hero-capture-label { margin-top: 21px; }
+  .footer .reviewed-footer { grid-template-columns: 1fr 1fr; }
+  .reviewed-footer .brand { grid-column: 1 / -1; }
+  .demo-stage .demo-frame { padding-inline: 13px; }
+  .demo-stage .demo-phone { width: min(320px, 96%); }
+}
+@media (max-width: 350px) {
+  .hero-blue .hero-capture-grid { gap: 7px; }
+  .hero-blue .hero-capture-card img { aspect-ratio: 1 / 1.02; }
+  .footer .reviewed-footer { grid-template-columns: 1fr; }
+}

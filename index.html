@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ORDIYA turns typed thoughts, photos, receipts, lists, and voice notes into structured entries tied to the right day.">
-  <meta name="theme-color" content="#ffffff">
-  <title>ORDIYA — Capture it once. Find it when it matters.</title>
+  <link rel="canonical" href="https://www.ordiya.com/">
+  <link rel="icon" type="image/svg+xml" href="assets/landing/ordiya-mark.svg">
+  <meta name="description" content="Write it, snap it, or say it. ORDIYA helps turn everyday notes into reviewed, date-based entries stored locally on your device.">
+  <meta name="theme-color" content="#3569d4">
+  <title>ORDIYA — Your handwriting, digitized and organized.</title>
   <style>
     :root {
       --ink: #121317;
@@ -178,14 +180,102 @@
     .footer-links { display: flex; gap: 24px; }
     .footer-links a:hover { color: var(--ink); }
 
+    .hero-blue { padding: 72px 0 90px; overflow: hidden; color: white; background: #3569d4; }
+    .hero-blue .hero-grid { grid-template-columns: minmax(380px, .82fr) minmax(560px, 1.18fr); gap: 58px; }
+    .hero-blue .eyebrow { color: rgba(255,255,255,.78); }
+    .hero-blue h1 { max-width: 570px; font-size: clamp(52px, 6vw, 78px); }
+    .hero-blue .hero-copy { max-width: 550px; color: rgba(255,255,255,.9); }
+    .hero-blue .button-primary { color: #315fbf !important; background: white; }
+    .hero-blue .button-primary:hover { background: #f4f7ff; }
+    .hero-blue .beta-note { color: rgba(255,255,255,.76); }
+    .hero-capture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: center; }
+    .hero-capture-card { position: relative; min-width: 0; }
+    .hero-capture-card:nth-child(2) { transform: translateY(34px); }
+    .hero-capture-visual { position: relative; }
+    .hero-capture-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid rgba(255,255,255,.7); border-radius: 26px; box-shadow: 0 20px 48px rgba(19,48,111,.28); }
+    .hero-capture-card .capture-icon { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); }
+    .hero-capture-label { margin-top: 34px; text-align: center; font-size: 18px; }
+
+    .capture-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; color: #3569d4; background: white; box-shadow: 0 12px 28px rgba(20,35,68,.14); }
+    .capture-icon svg { width: 24px; height: 24px; }
+    .statement-light { padding: 84px 0; background: #e9edf5; }
+    .statement-light .statement-grid { grid-template-columns: 1fr; gap: 24px; }
+    .statement-light h2 { max-width: 760px; color: #17233b; }
+    .statement-light .statement-copy { max-width: 820px; color: #3f4859; font-size: clamp(18px, 2vw, 24px); }
+
+    .feature-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .feature-card { min-height: 100%; padding: 30px; border: 1px solid #e2e5eb; border-radius: 24px; background: white; box-shadow: 0 16px 44px rgba(24,39,69,.07); }
+    .feature-card .capture-icon { margin-bottom: 24px; background: #edf3ff; box-shadow: none; }
+    .feature-card h3 { margin-bottom: 12px; font-size: 29px; letter-spacing: -.035em; }
+    .feature-card p { margin-bottom: 0; color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
+    .motion-zone { padding: 110px 0; background: #f3f5f9; }
+    .motion-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 78px; align-items: center; }
+    .motion-copy .section-description { max-width: 520px; }
+    .motion-disclosure { margin-top: 22px; padding-left: 14px; border-left: 3px solid #8daae8; color: #686f7d; font-size: 13px; line-height: 1.55; }
+    .demo-stage { position: relative; min-height: 560px; border-radius: 30px; overflow: hidden; background: #dfe5ef; box-shadow: var(--shadow); }
+    .motion-toggle { position: absolute; top: 18px; right: 18px; z-index: 3; min-height: 40px; padding: 0 16px; border: 1px solid rgba(255,255,255,.6); border-radius: 999px; color: white; background: rgba(12,20,36,.76); backdrop-filter: blur(10px); font-weight: 700; cursor: pointer; }
+    .motion-toggle:hover { background: rgba(12,20,36,.9); }
+    .motion-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+    .demo-stage.is-paused .demo-frame { animation-play-state: paused; }
+    .demo-frame { position: absolute; inset: 0; display: grid; place-items: center; padding: 34px; animation: demoCycle 8s ease-in-out infinite; }
+    .demo-frame.photo-frame { background: url('assets/landing/capture-notes.png') center / cover no-repeat; }
+    .demo-frame.photo-frame::after { content: "Photograph the note"; position: absolute; left: 28px; bottom: 28px; padding: 10px 15px; border-radius: 999px; color: white; background: rgba(12,20,36,.76); font-size: 13px; font-weight: 700; }
+    .demo-frame.review-frame { opacity: 0; animation-delay: 4s; background: linear-gradient(145deg,#dce5f8,#eef2f8); }
+    .demo-phone { width: min(320px, 80%); padding: 12px; border-radius: 38px; background: #111827; box-shadow: 0 22px 54px rgba(21,33,59,.28); }
+    .demo-screen { min-height: 470px; padding: 22px 20px; border-radius: 29px; background: white; }
+    .demo-appbar { margin: -22px -20px 20px; padding: 19px 20px; border-radius: 29px 29px 0 0; color: white; background: #3569d4; font-size: 13px; font-weight: 760; letter-spacing: .08em; }
+    .demo-label { color: #757b87; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .demo-note { margin: 8px 0 18px; padding: 14px; border-radius: 13px; background: #f3f5f8; color: #394150; font-size: 14px; line-height: 1.5; }
+    .demo-field { margin-top: 10px; padding: 13px 14px; border: 1px solid #dce0e8; border-radius: 12px; color: #263248; font-size: 13px; }
+    .demo-review { margin-top: 18px; padding: 13px; border-radius: 12px; color: #2457b9; background: #edf3ff; font-size: 12px; font-weight: 650; }
+    @keyframes demoCycle { 0%,42% { opacity:1; transform:scale(1); } 48%,92% { opacity:0; transform:scale(1.025); } 100% { opacity:1; transform:scale(1); } }
+
+    .icon-features { padding: 110px 0; }
+    .icon-feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 52px; }
+    .icon-feature { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 26px; border: 1px solid #e3e6ec; border-radius: 20px; }
+    .icon-feature .capture-icon { width: 48px; height: 48px; background: #edf3ff; box-shadow: none; }
+    .icon-feature h3 { margin-bottom: 8px; font-size: 21px; }
+    .icon-feature p { margin-bottom: 0; color: var(--ink-soft); line-height: 1.55; }
+
+    .lifestyle { padding: 0 0 110px; }
+    .lifestyle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .lifestyle-card { position: relative; min-height: 470px; overflow: hidden; border-radius: 26px; }
+    .lifestyle-card img { width: 100%; height: 100%; object-fit: cover; }
+    .lifestyle-caption { position: absolute; inset: auto 22px 22px; padding: 18px 20px; border-radius: 16px; color: white; background: rgba(14,23,40,.78); backdrop-filter: blur(12px); }
+    .lifestyle-caption strong { display: block; margin-bottom: 5px; font-size: 20px; }
+    .lifestyle-caption span { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.45; }
+
+    .pricing { padding: 108px 0; text-align: center; background: #101827; color: white; }
+    .pricing .section-heading { color: white; }
+    .pricing .section-description { margin-inline: auto; color: rgba(255,255,255,.7); }
+    .pricing-card { width: min(100%, 560px); margin: 48px auto 0; padding: 38px; border: 1px solid rgba(255,255,255,.14); border-radius: 26px; background: #182236; box-shadow: 0 24px 60px rgba(0,0,0,.2); }
+    .pricing-name { color: #9ab7f4; font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .pricing-amount { margin: 16px 0 4px; font-size: 64px; line-height: 1; letter-spacing: -.055em; font-weight: 720; }
+    .pricing-period { color: rgba(255,255,255,.62); }
+    .pricing-list { display: grid; gap: 12px; margin: 30px 0; padding: 0; list-style: none; text-align: left; }
+    .pricing-list li { display: flex; gap: 12px; color: rgba(255,255,255,.82); line-height: 1.45; }
+    .pricing-list li::before { content: "✓"; color: #8bb0ff; font-weight: 800; }
+    .pricing-caveat { margin: 20px 0 0; color: rgba(255,255,255,.55); font-size: 12px; line-height: 1.55; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+      .demo-frame.photo-frame { opacity: 0; }
+      .demo-frame.review-frame { opacity: 1; transform: none; }
+      .motion-toggle { display: none; }
+    }
+
     @media (max-width: 980px) {
       .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+      .hero-blue .hero-grid { grid-template-columns: 1fr; }
       .hero-copy { max-width: 720px; }
       .hero-media { max-width: 760px; }
       .capture-summary { left: 24px; }
       .statement-grid, .output-intro, .how-grid, .faq-grid { grid-template-columns: 1fr; gap: 40px; }
       .output-grid { grid-template-columns: 1fr; }
       .output-card { min-height: auto; }
+      .motion-grid { grid-template-columns: 1fr; gap: 48px; }
+      .feature-card-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 760px) {
@@ -194,16 +284,24 @@
       .nav-links.open { transform: translateY(0); }
       .menu-button { display: block; }
       .hero { padding: 60px 0 82px; }
+      .hero-blue { padding: 52px 0 80px; }
       h1 { font-size: clamp(46px, 14vw, 62px); }
       .hero-grid { gap: 42px; }
+      .hero-capture-grid { gap: 10px; }
+      .hero-capture-card:nth-child(2) { transform: translateY(22px); }
+      .hero-capture-label { font-size: 14px; }
+      .capture-icon { width: 44px; height: 44px; }
       .capture-summary { position: relative; left: auto; bottom: auto; width: calc(100% - 28px); margin: -52px auto 0; }
-      .statement, .capture-modes, .output, .how, .faq { padding: 78px 0; }
+      .statement, .statement-light, .capture-modes, .output, .how, .faq, .motion-zone, .icon-features, .pricing { padding: 78px 0; }
       .mode-card.large, .mode-card.small, .mode-card.wide { grid-column: span 12; }
       .mode-card.wide { display: block; }
       .mode-image, .mode-card.small .mode-image { height: 270px; }
       .calendar-stage { padding: 26px 18px; }
       .output-intro { margin-bottom: 36px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .icon-feature-grid, .lifestyle-grid { grid-template-columns: 1fr; }
+      .lifestyle-card { min-height: 390px; }
+      .demo-stage { min-height: 580px; }
     }
 
     @media (max-width: 430px) {
@@ -216,6 +314,7 @@
       .footer-links { flex-wrap: wrap; }
     }
   </style>
+  <link rel="stylesheet" href="website-review.css">
 </head>
 <body>
   <nav class="nav" aria-label="Primary navigation">
@@ -229,48 +328,59 @@
         ORDIYA
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#capture">Capture</a>
-        <a href="#how">How it works</a>
-        <a href="#faq">Questions</a>
-        <a href="#faq" class="nav-cta">Beta coming soon</a>
+        <a href="#capture">Features</a>
+        <a href="#demo">How it works</a>
+        <a href="#faq">Good to know</a>
+        <a href="#availability" class="nav-cta">Access details</a>
       </div>
       <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation"><span></span></button>
     </div>
   </nav>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero-blue">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Your notes, organized</p>
-          <h1>Capture it once. Find it when it matters.</h1>
-          <p class="hero-copy">ORDIYA turns typed thoughts, photos, receipts, lists, and voice notes into structured entries tied to the right day.</p>
+          <p class="eyebrow">From chaos to ORDIYA.</p>
+          <h1>Your handwriting. Digitized. Scheduled. Organized.</h1>
+          <p class="hero-copy">Type a thought, photograph a note, or speak a reminder. Review the details before you save them to the right day.</p>
           <div class="hero-actions">
-            <a href="#faq" class="button-primary">Beta coming soon</a>
-            <a href="#capture" class="text-link">See how it works</a>
+            <a href="#capture" class="button-primary">See how it works</a>
           </div>
-          <p class="beta-note">Native iPhone beta access is being prepared through TestFlight.</p>
         </div>
-        <div class="hero-media">
-          <img class="hero-photo" src="assets/landing/hero-workspace.png" alt="A handwritten planner, smartphone, and pen on a thoughtfully arranged desk">
-          <div class="capture-summary" aria-label="Example ORDIYA capture summary">
-            <div class="summary-label">Captured today</div>
-            <div class="summary-title">Three notes, ready to use</div>
-            <div class="summary-row"><span>Receipt</span><span class="summary-status">Structured</span></div>
-            <div class="summary-row"><span>Task list</span><span class="summary-status">Checklist</span></div>
-            <div class="summary-row"><span>Voice note</span><span class="summary-status">Transcribed</span></div>
-          </div>
+        <div class="hero-capture-grid" aria-label="Three ways to capture with ORDIYA">
+          <article class="hero-capture-card">
+            <div class="hero-capture-visual">
+              <img src="assets/landing/type-capture.webp" width="1050" height="700" alt="Someone typing with both thumbs on a phone">
+              <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"/><path d="m15 16 4-4 2 2-4 4-3 1z"/></svg></span>
+            </div>
+            <div class="hero-capture-label">Type</div>
+          </article>
+          <article class="hero-capture-card">
+            <div class="hero-capture-visual">
+              <img src="assets/landing/capture-notes.png" width="1280" height="720" alt="A person photographing a handwritten note with a phone">
+              <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="4"/></svg></span>
+            </div>
+            <div class="hero-capture-label">Photo</div>
+          </article>
+          <article class="hero-capture-card">
+            <div class="hero-capture-visual">
+              <img src="assets/landing/voice-capture.png" width="1280" height="720" alt="A person recording a voice note in a calm workspace">
+              <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></span>
+            </div>
+            <div class="hero-capture-label">Voice</div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="statement">
+    <section class="statement-light">
       <div class="container statement-grid">
         <div>
           <span class="section-kicker">Made for real life</span>
-          <h2>Paper is fast.<br>ORDIYA makes it useful.</h2>
+          <h2>Start anywhere.<br>ORDIYA takes it from there.</h2>
         </div>
-        <p class="statement-copy">The good stuff rarely begins in a perfect form. It starts on a receipt, in a notebook, or as something you say before you forget. ORDIYA keeps the original context and gives it structure.</p>
+        <p class="statement-copy">The good stuff rarely begins in a perfect form. It starts on a sticky note, in a notebook, or as something you say before you forget. ORDIYA lets you review the captured text or transcript, choose where it belongs, and save it locally.</p>
       </div>
     </section>
 
@@ -278,144 +388,140 @@
       <div class="container">
         <div class="section-intro">
           <span class="section-kicker">Capture your way</span>
-          <h2 class="section-heading">Use the input that fits the moment.</h2>
-          <p class="section-description">No single workflow forced onto every note. ORDIYA treats photos, voice, and typed entries differently so the result stays readable.</p>
+          <h2 class="section-heading">Write it. Snap it. Say it.</h2>
+          <p class="section-description">Use the input that fits the moment, then review the title, date, time, and captured content before saving.</p>
         </div>
-        <div class="modes-grid">
-          <article class="mode-card large">
-            <img class="mode-image" src="assets/landing/capture-notes.png" alt="A person capturing a handwritten note and receipt with a smartphone" loading="lazy">
-            <div class="mode-copy">
-              <div class="mode-number">01 · Photograph</div>
-              <h3>Turn paper into something usable.</h3>
-              <p>Capture a receipt, handwritten list, or planner page. Review the extracted text before saving it.</p>
-            </div>
+        <div class="feature-card-grid">
+          <article class="feature-card">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"/><path d="m15 16 4-4 2 2-4 4-3 1z"/></svg></span>
+            <h3>Type it.</h3>
+            <p>Start with a reminder, appointment, list, or idea. Choose a date, shape the details, and save it where you expect to find it.</p>
           </article>
-          <article class="mode-card small">
-            <img class="mode-image" src="assets/landing/voice-capture.png" alt="A professional recording a voice note in a calm workspace" loading="lazy">
-            <div class="mode-copy">
-              <div class="mode-number">02 · Speak</div>
-              <h3>Say it before it disappears.</h3>
-              <p>Record a natural voice note, keep the full transcript, and reopen it whenever you need the complete thought.</p>
-            </div>
+          <article class="feature-card">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="4"/></svg></span>
+            <h3>Snap it.</h3>
+            <p>Photograph a handwritten note, sticky note, or short list. Review the extracted text and confirm the details before saving.</p>
           </article>
-          <article class="mode-card wide">
-            <div class="mode-copy">
-              <div class="mode-number">03 · Organize</div>
-              <h3>Save it to the day it belongs.</h3>
-              <p>Choose a date first, then type, photograph, or record. The finished entry remains connected to that day instead of getting lost in a generic inbox.</p>
-            </div>
-            <div class="calendar-stage" aria-label="Illustration of ORDIYA calendar entries">
-              <div class="calendar-window">
-                <div class="calendar-head"><span>July 2026</span><span aria-hidden="true">‹ &nbsp; ›</span></div>
-                <div class="calendar-days">
-                  <b>S</b><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b>
-                  <span>12</span><span>13</span><span>14</span><span class="selected">15</span><span>16</span><span>17</span><span>18</span>
-                </div>
-                <div class="day-captures">
-                  <div class="day-note"><strong>Project checklist</strong><span>Photo</span></div>
-                  <div class="day-note"><strong>Client follow-up</strong><span>Voice</span></div>
-                  <div class="day-note"><strong>Receipt</strong><span>Capture</span></div>
-                </div>
+          <article class="feature-card">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></span>
+            <h3>Say it.</h3>
+            <p>Speak a reminder or idea when typing is inconvenient. Review the transcript, choose the date, and save the thought while it is fresh.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="motion-zone" id="demo">
+      <div class="container motion-grid">
+        <div class="motion-copy">
+          <span class="section-kicker">One simple review loop</span>
+          <h2 class="section-heading">Photograph the note. Check what ORDIYA found.</h2>
+          <p class="section-description">The current photo flow keeps you in control: capture a note, read the extracted text, correct anything uncertain, confirm the date and time, then save.</p>
+          <p class="motion-disclosure">Illustrated walkthrough, not live app footage. Handwriting recognition varies; check the text before saving.</p>
+        </div>
+        <div class="demo-stage" role="group" aria-label="Illustrated transition from photographing a handwritten note to reviewing captured content in ORDIYA">
+          <button class="motion-toggle" type="button" aria-pressed="false">Pause</button>
+          <div class="demo-frame photo-frame" aria-hidden="true"></div>
+          <div class="demo-frame review-frame">
+            <div class="demo-phone">
+              <div class="demo-screen">
+                <div class="demo-appbar">ORDIYA · PHOTO</div>
+                <div class="demo-label">Text from photo</div>
+                <div class="demo-note">Dentist<br>9/25<br>4pm</div>
+                <div class="demo-label">Event details</div>
+                <div class="demo-field">Title · Dentist</div>
+                <div class="demo-field">Starts · Sep 25 · 4:00 PM</div>
+                <div class="demo-field">Ends · Sep 25 · 5:00 PM</div>
+                <div class="demo-review">Review every field before saving</div>
               </div>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="output">
-      <div class="container">
-        <div class="output-intro">
-          <div>
-            <span class="section-kicker">Readable by design</span>
-            <h2 class="section-heading" style="color:white">The result should look better than the input.</h2>
           </div>
-          <p>Raw OCR and long transcripts belong in the details—not in giant calendar titles. ORDIYA presents each capture according to what it is.</p>
         </div>
-        <div class="output-grid">
-          <article class="output-card">
-            <span class="output-type">Receipt</span>
-            <h3>Key purchase details at a glance</h3>
-            <p>Merchant, date, location, and total are separated from the original captured text.</p>
-            <div class="receipt-lines">
-              <div class="receipt-line"><span>Merchant</span><strong>Home supply store</strong></div>
-              <div class="receipt-line"><span>Date</span><strong>July 15</strong></div>
-              <div class="receipt-line"><span>Total</span><strong>$84.27</strong></div>
-            </div>
+      </div>
+    </section>
+
+    <section class="icon-features" id="how">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-kicker">Review before saving</span>
+          <h2 class="section-heading">Thoughtful tools for everyday capture.</h2>
+          <p class="section-description">Choose a date, capture in the way that fits the moment, and review the details before saving.</p>
+        </div>
+        <div class="icon-feature-grid">
+          <article class="icon-feature">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M8 3v4M16 3v4M4 9h16"/></svg></span>
+            <div><h3>Keep it with the right day</h3><p>The date you select guides the capture, and saved entries remain visible on that day when you return.</p></div>
           </article>
-          <article class="output-card">
-            <span class="output-type">Checklist</span>
-            <h3>One item per line</h3>
-            <p>Short photographed lists become readable rows instead of one merged block of OCR.</p>
-            <div class="check-lines">
-              <div class="check-line"><span class="check-box"></span><span>Confirm measurements</span></div>
-              <div class="check-line"><span class="check-box"></span><span>Order replacement parts</span></div>
-              <div class="check-line"><span class="check-box"></span><span>Schedule follow-up</span></div>
-            </div>
+          <article class="icon-feature">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h4l2-2h6l2 2h4v12H3z"/><circle cx="12" cy="13" r="4"/></svg></span>
+            <div><h3>Turn handwriting into editable text</h3><p>Photographed notes move into an editable review, so you can correct the words and confirm the schedule before saving.</p></div>
           </article>
-          <article class="output-card">
-            <span class="output-type">Voice note</span>
-            <h3>A concise card, with the full thought intact</h3>
-            <p>See a readable preview on the calendar and the complete transcript when you reopen the note.</p>
-            <div class="transcript">“Remember to bring the revised floor plan and confirm the Thursday delivery window before the meeting.”</div>
+          <article class="icon-feature">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+            <div><h3>Speak now, review the words</h3><p>Capture a thought by voice, read the transcript, and make any edits while the idea is still fresh.</p></div>
+          </article>
+          <article class="icon-feature">
+            <span class="capture-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+            <div><h3>Stay in control of every detail</h3><p>Titles, notes, dates, and times stay editable before save, so the final entry reflects what you meant.</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="how" id="how">
-      <div class="container how-grid">
-        <div>
-          <span class="section-kicker">A simple loop</span>
-          <h2 class="section-heading">Four clear steps. No setup maze.</h2>
+    <section class="lifestyle" aria-labelledby="real-life-heading">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-kicker">Built for real life</span>
+          <h2 class="section-heading" id="real-life-heading">Capture where the thought already happens.</h2>
+          <p class="section-description">At a desk, between meetings, or while looking at the note you do not want to retype.</p>
         </div>
-        <div class="how-list">
-          <article class="how-step"><span class="how-step-number">01</span><div><h3>Pick the day</h3><p>Start from the date where the note should live.</p></div></article>
-          <article class="how-step"><span class="how-step-number">02</span><div><h3>Capture naturally</h3><p>Type it, photograph it, or say it out loud.</p></div></article>
-          <article class="how-step"><span class="how-step-number">03</span><div><h3>Review the draft</h3><p>Confirm the extracted or transcribed content before saving.</p></div></article>
-          <article class="how-step"><span class="how-step-number">04</span><div><h3>Return with context</h3><p>Open the date later and see the structured note, original photo, or complete transcript.</p></div></article>
+        <div class="lifestyle-grid">
+          <article class="lifestyle-card">
+            <img src="assets/landing/hero-workspace.png" alt="Notebook, phone, and pen in a quiet workspace" loading="lazy">
+            <div class="lifestyle-caption"><strong>Think better on paper?</strong><span>Keep the habit. Use ORDIYA when the note needs a date and a place to return to.</span></div>
+          </article>
+          <article class="lifestyle-card">
+            <img src="assets/landing/voice-capture.png" alt="A professional speaking a voice note beside an open notebook" loading="lazy">
+            <div class="lifestyle-caption"><strong>Hands full?</strong><span>Speak the thought, review the transcript, and save it before the moment moves on.</span></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="faq" id="faq">
+      <section class="faq" id="faq">
       <div class="container faq-grid">
         <div>
           <span class="section-kicker">Good to know</span>
-          <h2 class="section-heading">About the upcoming beta.</h2>
+          <h2 class="section-heading">A few helpful details.</h2>
         </div>
         <div class="faq-list">
           <div class="faq-item">
-            <button class="faq-question" type="button">What can I capture?</button>
-            <div class="faq-answer"><p>Typed notes, photographs, receipts, handwritten lists, and voice notes. ORDIYA keeps the original context while presenting a cleaner summary.</p></div>
+            <button class="faq-question" type="button" aria-expanded="false">What can I capture?</button>
+            <div class="faq-answer"><p>Typed notes, photographs of short handwritten notes or lists, and voice-to-text notes. Every capture should be reviewed before saving because handwriting and speech recognition can be imperfect.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question" type="button">Where will my beta data be stored?</button>
-            <div class="faq-answer"><p>Current development builds store entries locally on the device. Cross-device account sync is not available yet, so beta testers should treat the app as an early testing build.</p></div>
+            <button class="faq-question" type="button" aria-expanded="false">Where are saved entries stored?</button>
+            <div class="faq-answer"><p>ORDIYA stores saved entries in the app on your device.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question" type="button">When can I test ORDIYA?</button>
-            <div class="faq-answer"><p>Native Android testing is active, and iPhone TestFlight preparation is underway. ORDIYA will share beta-access details when the next testing build is ready.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button">Is the beta free?</button>
-            <div class="faq-answer"><p>Yes. Planned beta testing does not require a payment.</p></div>
+            <button class="faq-question" type="button" aria-expanded="false">Can I edit a capture before saving it?</button>
+            <div class="faq-answer"><p>Yes. Check the title, date, time and captured text or transcript, and correct anything you need before saving.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="final-cta">
+    <section class="final-cta" id="availability" aria-labelledby="availability-heading">
       <div class="container">
-        <h2>Give the note a place to go.</h2>
-        <p>ORDIYA is preparing for native beta testing, with iPhone access planned through Apple TestFlight.</p>
-        <a href="#capture" class="button-primary">Explore how it works</a>
+        <h2 id="availability-heading">Give the note a place to go.</h2>
+        <p>Public signup isn’t open. In the meantime, see how capture and review work.</p>
+        <a href="#demo" class="button-primary">Watch the illustrated walkthrough</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
+    <div class="container footer-inner reviewed-footer">
       <a href="#top" class="brand" aria-label="ORDIYA home">
         <span class="brand-mark" aria-hidden="true">
           <i></i><i></i><i></i><i></i><i></i>
@@ -424,25 +530,49 @@
         </span>
         ORDIYA
       </a>
-      <span>© 2026 ORDIYA. In development.</span>
-      <div class="footer-links"><a href="#capture">Capture</a><a href="#how">How it works</a><a href="#faq">Beta status</a></div>
+      <div class="footer-group"><strong>Explore</strong><a href="#capture">Features</a><a href="#demo">How it works</a><a href="#faq">Good to know</a></div>
+      <div class="footer-group"><strong>Follow ORDIYA</strong><a class="social-link" href="https://www.instagram.com/ordiya.ai/" aria-label="ORDIYA on Instagram"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.7" r=".8" fill="currentColor" stroke="none"/></svg> Instagram</a></div>
+      <div class="footer-bottom">© 2026 ORDIYA</div>
     </div>
   </footer>
 
   <script>
     const menuButton = document.getElementById('menuButton');
     const navLinks = document.getElementById('navLinks');
+    const demoStage = document.querySelector('.demo-stage');
+    const motionToggle = document.querySelector('.motion-toggle');
 
-    menuButton.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
+    const setMenu = (open) => {
+      navLinks.classList.toggle('open', open);
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    };
+    menuButton.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+        setMenu(false);
+        menuButton.focus();
+      }
     });
+    matchMedia('(max-width: 760px)').addEventListener('change', () => setMenu(false));
 
     navLinks.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
+        setMenu(false);
       });
+    });
+
+    motionToggle.addEventListener('click', () => {
+      const isPaused = demoStage.classList.toggle('is-paused');
+      motionToggle.setAttribute('aria-pressed', String(isPaused));
+      motionToggle.textContent = isPaused ? 'Play' : 'Pause';
+    });
+
+    motionToggle.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        motionToggle.click();
+      }
     });
 
     document.querySelectorAll('.faq-question').forEach((button) => {
@@ -454,11 +584,15 @@
         document.querySelectorAll('.faq-item.open').forEach((openItem) => {
           openItem.classList.remove('open');
           openItem.querySelector('.faq-answer').style.maxHeight = '0px';
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         });
 
         if (willOpen) {
           item.classList.add('open');
           answer.style.maxHeight = `${answer.scrollHeight}px`;
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          button.setAttribute('aria-expanded', 'false');
         }
       });
     });
